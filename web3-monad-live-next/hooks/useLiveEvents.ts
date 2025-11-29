@@ -11,6 +11,7 @@ export interface TipEvent {
   amount: bigint
   timestamp: bigint
   type: 'instant' | 'stream'
+  tipper: string
 }
 
 /**
@@ -27,11 +28,14 @@ function generateMockTipEvents(): TipEvent[] {
     const type = Math.random() > 0.5 ? 'instant' : 'stream'
     // 时间戳递减，让新的在前面
     const timestamp = now - i * 60 // 每条相隔60秒
+    // 生成随机地址
+    const randomAddress = `0x${Math.random().toString(16).substring(2, 42).padEnd(40, '0')}`
 
     mockEvents.push({
       amount: parseEther(randomAmount),
       timestamp: BigInt(timestamp),
-      type
+      type,
+      tipper: randomAddress
     })
   }
 
@@ -66,7 +70,8 @@ export function useLiveEvents(chainId: number) {
       const newEvent: TipEvent = {
         amount: diff,
         timestamp: now,
-        type: 'instant'
+        type: 'instant',
+        tipper: '0x0000000000000000000000000000000000000000'
       }
       setEvents((prev) => [newEvent, ...prev].slice(0, 50))
     }
@@ -77,7 +82,8 @@ export function useLiveEvents(chainId: number) {
       const newEvent: TipEvent = {
         amount: diff,
         timestamp: now,
-        type: 'stream'
+        type: 'stream',
+        tipper: '0x0000000000000000000000000000000000000000'
       }
       setEvents((prev) => [newEvent, ...prev].slice(0, 50))
     }
