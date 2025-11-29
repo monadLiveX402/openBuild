@@ -1,0 +1,12 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "deployer": "0x0F07CdFa12e37cB52f88CDdBE06Db475cf89f423",
+  "timestamp": "2025-11-29T06:39:53.777Z",
+  "contracts": {
+    "UnifiedTipping": {
+      "address": "0x18B876906c6F4f555D3b498Ce556A3363462F871",
+      "explorer": "https://sepolia.etherscan.io/address/0x18B876906c6F4f555D3b498Ce556A3363462F871"
+    }
+  }
+}
